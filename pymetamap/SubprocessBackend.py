@@ -48,6 +48,7 @@ class SubprocessBackend(MetaMap):
                          compute_all_mappings=False,
                          prune=False,
                          mm_data_version=False,
+                         mm_data_year=False,
                          exclude_sources=[],
                          restrict_to_sources=[],
                          restrict_to_sts=[],
@@ -75,6 +76,7 @@ class SubprocessBackend(MetaMap):
                 Ignore Stop Phrases -K
                 Compute All Mappings -b
                 MM Data Version -V
+                MM Data Year -Z
                 Exclude Sources -e
                 Restrict to Sources -R
                 Restrict to Semantic Types -J
@@ -112,6 +114,9 @@ class SubprocessBackend(MetaMap):
                     raise ValueError("mm_data_version must be Base, USAbase, or NLM.")
                 command.append('-V')
                 command.append(str(mm_data_version))
+            if mm_data_year is not False:
+                command.append('-Z')
+                command.append(str(mm_data_year))
             if word_sense_disambiguation:
                 command.append('-y')
             if strict_model:
